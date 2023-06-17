@@ -1,10 +1,27 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
 import HomePage from './routes/home/HomePage'
+
+const Navigation = () => {
+  return (
+    <div>
+      <div>
+        <h1>I am the navigation bar</h1>
+      </div>
+    </div>
+  )
+}
+
+const Shop = () => {
+  return <h1>I am the shop page</h1>
+}
 
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<HomePage />}></Route>
+      <Route path='/' element={<Navigation />}></Route>
+      <Route path='/home' element={<HomePage />}>
+        <Route path='shop' element={<Shop />} />
+      </Route>
     </Routes>
   )
 }
