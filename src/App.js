@@ -7,6 +7,7 @@ const Navigation = () => {
       <div>
         <h1>I am the navigation bar</h1>
       </div>
+      <Outlet />
     </div>
   )
 }
@@ -18,8 +19,8 @@ const Shop = () => {
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<Navigation />}></Route>
-      <Route path='/home' element={<HomePage />}>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<HomePage />} />
         <Route path='shop' element={<Shop />} />
       </Route>
     </Routes>
