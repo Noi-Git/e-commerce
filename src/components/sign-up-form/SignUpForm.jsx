@@ -12,7 +12,9 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields
 
   const handleChange = (event) => {
-    const { name } = event
+    const { name, value } = event
+    // make the function generic -- destructure the name of the event
+    // "name" is use for telling setState -- which field should be updated
   }
 
   const onSubmitSignup = () => {}
