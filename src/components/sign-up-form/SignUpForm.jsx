@@ -11,7 +11,9 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
   const { displayName, email, password, confirmPassword } = formFields
 
-  const handleChange = (event) => {}
+  const handleChange = (event) => {
+    const { name } = event
+  }
 
   const onSubmitSignup = () => {}
 
@@ -24,21 +26,30 @@ const SignUpForm = () => {
         }}
       >
         <label>Display Name</label>
-        {/* name="displayName" -- has to be the same as we have in the defaultFormFields */}
+        {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
         <input
           type='text'
           required
           onChange={handleChange}
           name='displayName'
+          value={displayName}
+          //value -- has to be exact of what we extract form -- formFields
         />
         <label>Email</label>
-        <input type='email' required onChange={handleChange} name='email' />
+        <input
+          type='email'
+          required
+          onChange={handleChange}
+          name='email'
+          value={email}
+        />
         <label>Password</label>
         <input
           type='password'
           required
           onChange={handleChange}
           name='password'
+          value={password}
         />
         <label>Confirm Password</label>
         <input
@@ -46,6 +57,7 @@ const SignUpForm = () => {
           required
           onChange={handleChange}
           name='confirmPassword'
+          value={confirmPassword}
         />
         <button type='submit'>Sign Up</button>
       </form>
