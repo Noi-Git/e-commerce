@@ -24,13 +24,29 @@ const SignUpForm = () => {
         }}
       >
         <label>Display Name</label>
-        <input type='text' required onChange={handleChange} />
+        {/* name="displayName" -- has to be the same as we have in the defaultFormFields */}
+        <input
+          type='text'
+          required
+          onChange={handleChange}
+          name='displayName'
+        />
         <label>Email</label>
-        <input type='email' required onChange={handleChange} />
+        <input type='email' required onChange={handleChange} name='email' />
         <label>Password</label>
-        <input type='password' required onChange={handleChange} />
+        <input
+          type='password'
+          required
+          onChange={handleChange}
+          name='password'
+        />
         <label>Confirm Password</label>
-        <input type='password' required onChange={handleChange} />
+        <input
+          type='password'
+          required
+          onChange={handleChange}
+          name='confirmPassword'
+        />
         <button type='submit'>Sign Up</button>
       </form>
     </div>
