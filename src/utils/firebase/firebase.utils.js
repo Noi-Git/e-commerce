@@ -7,18 +7,27 @@ import {
 } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
-const firebaseConfig = {}
+const firebaseConfig = {
+  apiKey: 'AIzaSyBkUGEeMeAFSOqjh28KOSnCIJh1zoFd8rw',
+  authDomain: 'noi-e-commerce-db.firebaseapp.com',
+  projectId: 'noi-e-commerce-db',
+  storageBucket: 'noi-e-commerce-db.appspot.com',
+  messagingSenderId: '650095256826',
+  appId: '1:650095256826:web:aa6f6ebfe962c16fab1543',
+}
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig)
 
-const provider = new GoogleAuthProvider()
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider()
+googleProvider.setCustomParameters({
   prompt: 'select_account',
 })
 
 export const auth = getAuth()
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
+export const singInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider)
 
 export const db = getFirestore()
 
