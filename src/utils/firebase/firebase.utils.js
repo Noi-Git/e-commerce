@@ -33,6 +33,7 @@ export const singInWithGoogleRedirect = () =>
 export const db = getFirestore()
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+  if (!userAuth) return
   //if there is any existing document
   const userDocRef = doc(db, 'users', userAuth.uid)
 
