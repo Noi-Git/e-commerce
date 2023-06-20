@@ -3,6 +3,7 @@ import './form-input.style.scss'
 const FromInput = ({ label, ...otherProps }) => {
   return (
     <div className='group'>
+      <input className='form-input' {...otherProps} />
       {label && (
         <label
           className={`${
@@ -13,7 +14,6 @@ const FromInput = ({ label, ...otherProps }) => {
         </label>
       )}
       {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
-      <input className='form-input' {...otherProps} />
     </div>
   )
 }
