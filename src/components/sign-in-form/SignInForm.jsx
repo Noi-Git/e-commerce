@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
-  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/FormInput'
 import './sign-in-form.styles.scss'
@@ -20,14 +20,17 @@ const SignInForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target
-    // make the function generic -- destructure the name of the event
-    // "name" is use for telling setState -- which field should be updated
-
     setFormFields({ ...formFields, [name]: value })
   }
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
+  }
+
+  const signInWithGoogle = async () => {
+    const { user } = await signInWithGooglePopup()
+
+    await createUserDocumentFromAuth(user)
   }
 
   const handleSubmit = async (event) => {
@@ -61,6 +64,7 @@ const SignInForm = () => {
         />
 
         <Button type='submit'>Sign In</Button>
+        <Button onClick={signInWithGoogle}>Google sign in</Button>
       </form>
     </div>
   )
