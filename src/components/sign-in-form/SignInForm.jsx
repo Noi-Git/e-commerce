@@ -42,9 +42,17 @@ const SignInForm = () => {
       console.log(response)
       resetFormFields()
     } catch (error) {
-      if (error.code === 'auth/wrong-password') {
-        alert('incorrect password or email')
+      switch (error.code) {
+        case 'auth/wrong-password':
+          alert('Incorrect password or email')
+          break
+        case 'auth/user-not-found':
+          alert('No user associated with this email')
+          break
+        default:
+          console.log(error)
       }
+
       console.log(error)
     }
   }
