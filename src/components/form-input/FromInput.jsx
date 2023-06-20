@@ -1,21 +1,13 @@
 import React from 'react'
 
-const FromInput = ({ label, changeHandler, value }) => {
+const FromInput = ({ label, ...otherProps }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>{label}</label>
-        {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
-        <input
-          type='text'
-          required
-          onChange={handleChange}
-          name='displayName'
-          value={displayName}
-        />
+      <label>{label}</label>
+      {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
+      <input {...otherProps} />
 
-        <button type='submit'>Sign Up</button>
-      </form>
+      <button type='submit'>Sign Up</button>
     </div>
   )
 }
