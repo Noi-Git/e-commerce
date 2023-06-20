@@ -57,22 +57,6 @@ const SignUpForm = () => {
     <div>
       <h1>Sign up with your email and password</h1>
       <form onSubmit={handleSubmit}>
-        {/* create from input as object */}
-        {/* also need to change
-            FormInput FromInput = ({ label, ...inputOptions })  
-            and
-            <input className='form-input' {...inputOptions} />
-        */}
-        {/* <FromInput
-          label='Display Name'
-          inputOptions={{
-            type: 'text',
-            required: true,
-            onChange: { handleChange },
-            name: 'displayName',
-            value: { displayName },
-          }}
-        /> */}
         <FormInput
           label='Display Name'
           type='text'
