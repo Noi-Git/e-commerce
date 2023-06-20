@@ -27,17 +27,21 @@ const SignUpForm = () => {
 
     if (password !== confirmPassword) {
       alert('Password does not match')
+      return
+    }
+
+    try {
+      const response = await createAuthUserWithEmailAndPassword(email, password)
+      console.log(response)
+    } catch (error) {
+      console.log('User creation encountered an error', error)
     }
   }
 
   return (
     <div>
       <h1>Sign up with your email and password</h1>
-      <form
-        onSubmit={() => {
-          handleSubmit()
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <label>Display Name</label>
         {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
         <input
