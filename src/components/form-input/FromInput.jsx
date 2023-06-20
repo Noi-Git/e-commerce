@@ -1,11 +1,19 @@
-import React from 'react'
+import './form-input.style.scss'
 
 const FromInput = ({ label, ...otherProps }) => {
   return (
-    <div>
-      <label>{label}</label>
+    <div className='group'>
+      {label && (
+        <label
+          className={`${
+            otherProps.value.length ? 'shrink' : null
+          } form-input-label`}
+        >
+          {label}
+        </label>
+      )}
       {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
-      <input {...otherProps} />
+      <input className='form-input' {...otherProps} />
     </div>
   )
 }
