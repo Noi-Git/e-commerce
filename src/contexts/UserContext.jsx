@@ -11,6 +11,7 @@ export const UserContext = createContext({
 })
 
 export const UserProvider = ({ children }) => {
+  //we want to store currentUser and setCurrentUser
   const [currentUser, setCurrentUser] = useState(null)
   const value = { currentUser, setCurrentUser }
 
