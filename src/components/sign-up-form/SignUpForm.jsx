@@ -46,7 +46,7 @@ const SignUpForm = () => {
 
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password)
-      setCurrentUser(user)
+      setCurrentUser(user) //user will be set inside of context when they signup for the first time
       // console.log(user)
 
       await createUserDocumentFromAuth(user, { displayName })
