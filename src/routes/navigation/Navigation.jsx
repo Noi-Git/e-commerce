@@ -3,6 +3,7 @@ import { Outlet, Link } from 'react-router-dom'
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 import { UserContext } from '../../contexts/UserContext'
+import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 import './navigation.styles.scss'
 
@@ -21,7 +22,10 @@ const Navigation = () => {
           </Link>
           {/* display sign out link after user has signed in */}
           {currentUser ? (
-            <span className='nav-link'> SIGN OUT</span>
+            <span className='nav-link' onClick={signOutUser}>
+              {' '}
+              SIGN OUT
+            </span>
           ) : (
             <Link className='nav-link' to='/auth'>
               SIGN IN
