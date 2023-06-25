@@ -5,11 +5,9 @@ import { createContext, useEffect, useState } from 'react'
 */
 
 const addCartItem = (cartItems, productToAdd) => {
-  //find if cartItems contains productToAdd
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
-  ) //check if the item we try to add is in the cart
-  //if found, increment quantity
+  )
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === productToAdd.id
@@ -17,8 +15,13 @@ const addCartItem = (cartItems, productToAdd) => {
         : cartItem
     )
   }
-  //return new array with modifyied cartItems/new cart item
-  return [...cartItems, { ...productToAdd, quantity: 1 }] //handle if the product is not in current cart
+  return [...cartItems, { ...productToAdd, quantity: 1 }]
+}
+
+const removeCartItem = (cartItems, cartItemToRemove) => {
+  //find the item in the cart we want to remove
+  //check if quantity === 1, yes, remove the item from cart
+  //if quantity !== 1, return the item with reduced quantity
 }
 
 export const CartContext = createContext({
