@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
     //the moment that the listener mounts. It will check the authentication state
     //and automatically initialze the listerner
     const unsubscribe = onAuthStateChangedListener((user) => {
+      setCurrentUser(user)
       console.log('user:- ', user)
     })
     return unsubscribe
