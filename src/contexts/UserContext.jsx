@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from 'react'
-import { onAuthStateChangedListener } from '../utils/firebase/firebase.utils'
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+} from '../utils/firebase/firebase.utils'
 
 /* === context ===
   - context is a kind of storage place
@@ -20,6 +23,9 @@ export const UserProvider = ({ children }) => {
     //the moment that the listener mounts. It will check the authentication state
     //and automatically initialze the listerner
     const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user)
+      }
       setCurrentUser(user)
       console.log('user:- ', user)
     })
