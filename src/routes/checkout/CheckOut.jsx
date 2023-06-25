@@ -6,7 +6,22 @@ import './checkout.styles.scss'
 const CheckOut = () => {
   const { cartItems } = useContext(CartContext)
 
-  return <div>CheckOut</div>
+  return (
+    <div>
+      <h1>Checkout page</h1>
+      <div>
+        {cartItems.map((cartItem) => {
+          const { id, name, quantity } = cartItem
+          return (
+            <div key={id}>
+              <h2>{name}</h2>
+              <span>{quantity}</span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 export default CheckOut
