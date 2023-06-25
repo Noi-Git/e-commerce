@@ -61,13 +61,14 @@ export const CartProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, productToAdd))
   }
   const removeItemFromCart = (cartItemToRemove) => {
-    setCartItems(addCartItem(cartItems, cartItemToRemove))
+    setCartItems(removeCartItem(cartItems, cartItemToRemove))
   }
 
   const value = {
     isCartOpen,
     setIsCartOpen,
     addItemToCart,
+    removeItemFromCart,
     cartItems,
     cartCount,
   }
