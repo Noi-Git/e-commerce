@@ -6,8 +6,19 @@ import { createContext, useState } from 'react'
 
 const addCartItem = (cartItems, productToAdd) => {
   //find if cartItems contains productToAdd
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === productToAdd.id
+  ) //check if the item we try to add is in the cart
   //if found, increment quantity
+  if (existingCartItem) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === productToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    )
+  }
   //return new array with modifyied cartItems/new cart item
+  return [...cartItems, { ...productToAdd, quantity: 1 }] //handle if the product is not in current cart
 }
 
 export const CartContext = createContext({
