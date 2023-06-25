@@ -20,7 +20,7 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields
   const { setCurrentUser } = useContext(UserContext)
 
-  console.log('hit')
+  // console.log('hit')
 
   // console.log(formFields)
 
