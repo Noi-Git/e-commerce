@@ -26,24 +26,21 @@ const CheckOut = () => {
           <span>Remove</span>
         </div>
       </div>
-      <h1>Checkout page</h1>
-      <div>
-        {cartItems.map((cartItem) => {
-          const { id, name, quantity } = cartItem
-          return (
-            <div key={id}>
-              <h2>{name}</h2>
-              <span>{quantity}</span>
-              <br />
-              <span onClick={() => removeItemFromCart(cartItem)}>
-                decrement
-              </span>
-              <br />
-              <span onClick={() => addItemToCart(cartItem)}>increment</span>
-            </div>
-          )
-        })}
-      </div>
+
+      {cartItems.map((cartItem) => {
+        const { id, name, quantity } = cartItem
+        return (
+          <div key={id}>
+            <h2>{name}</h2>
+            <span>{quantity}</span>
+            <br />
+            <span onClick={() => removeItemFromCart(cartItem)}>decrement</span>
+            <br />
+            <span onClick={() => addItemToCart(cartItem)}>increment</span>
+          </div>
+        )
+      })}
+      <span className='Total'>Total: 0</span>
     </div>
   )
 }
