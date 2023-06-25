@@ -5,11 +5,11 @@ import CartItem from '../cart-item/CartItem'
 import './cart-dropdown.styles.scss'
 
 const CartDropdown = () => {
-  const { cartItes } = useContext(CartContext)
+  const { cartItems } = useContext(CartContext)
   return (
     <div className='cart-dropdown-container'>
       <div className='cart-items'>
-        {cartItes.map((item) => (
+        {cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
