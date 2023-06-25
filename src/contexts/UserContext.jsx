@@ -1,4 +1,8 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+} from '../utils/firebase/firebase.utils'
 
 /* === context ===
   - context is a kind of storage place
@@ -15,8 +19,17 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
   const value = { currentUser, setCurrentUser }
 
-  //will receive value stored in currentUser and setCurrentUser
-  //this provider is allowing any of its children components to access the values inside of its useState
-  //<UseContext><App/></UseContext>
+  useEffect(() => {
+    //the moment that the listener mounts. It will check the authentication state
+    //and automatically initialze the listerner
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user)
+      }
+      setCurrentUser(user)
+      console.log('user:- ', user)
+    })
+    return unsubscribe
+  }, [])
   return <UserContext.Provider value={value}> {children} </UserContext.Provider>
 }
