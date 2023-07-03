@@ -44,6 +44,21 @@ export const db = getFirestore()
 
 export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
   const collectionRef = collection(db, collectionKey) //the collectionKey is user or shop
+  /*
+  Yihua: 1000 => 900
+  -100
+  Andrei: 1000 => 1100
+  +100
+  */
+  //use Batch to add object to the collection
+  const batch = writeBatch(db)
+
+  //create set event
+  objectsToAdd.forEach((object) => {
+    //get document refference
+    const docRef = doc((collectionRef, object.title.toLowerCase()))
+    batch.set(docRef, object)
+  })
 }
 
 export const createUserDocumentFromAuth = async (
