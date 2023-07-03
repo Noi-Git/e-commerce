@@ -59,6 +59,9 @@ export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
     const docRef = doc((collectionRef, object.title.toLowerCase()))
     batch.set(docRef, object)
   })
+
+  await batch.commit()
+  console.log('DONE')
 }
 
 export const createUserDocumentFromAuth = async (
