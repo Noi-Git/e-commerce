@@ -42,6 +42,10 @@ export const singInWithGoogleRedirect = () =>
 
 export const db = getFirestore()
 
+export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey) //the collectionKey is user or shop
+}
+
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation
