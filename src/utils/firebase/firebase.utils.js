@@ -42,26 +42,20 @@ export const singInWithGoogleRedirect = () =>
 
 export const db = getFirestore()
 
-export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
-  const collectionRef = collection(db, collectionKey) //the collectionKey is user or shop
-  /*
-  Yihua: 1000 => 900
-  -100
-  Andrei: 1000 => 1100
-  +100
-  */
-  //use Batch to add object to the collection
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const batch = writeBatch(db)
+  const collectionRef = collection(db, collectionKey)
 
-  //create set event
   objectsToAdd.forEach((object) => {
-    //get document refference
-    const docRef = doc((collectionRef, object.title.toLowerCase()))
+    const docRef = doc(collectionRef, object.title.toLowerCase())
     batch.set(docRef, object)
   })
 
   await batch.commit()
-  console.log('DONE')
+  console.log('done')
 }
 
 export const createUserDocumentFromAuth = async (
