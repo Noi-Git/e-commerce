@@ -50,8 +50,9 @@ export const addCollectionAndDocuments = async (
   const collectionRef = collection(db, collectionKey)
 
   objectsToAdd.forEach((object) => {
+    //object comes from data in shop-data
     const docRef = doc(collectionRef, object.title.toLowerCase())
-    batch.set(docRef, object)
+    batch.set(docRef, object) //set docRef data to the value in object
   })
 
   await batch.commit()

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils'
-import SHOP_DATA from '../shop-data.js'
+// import SHOP_DATA from '../shop-data.js'
 
 export const ProductsContext = createContext({
   products: [],
@@ -9,9 +9,13 @@ export const ProductsContext = createContext({
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    addCollectionAndDocuments('categories', SHOP_DATA)
-  }, [])
+  //==== This use effect is the one time use only ====
+  //==== It is to add new data to the database ====
+  //--- remove it when data is in the bd ====
+  // useEffect(() => {
+  //   //this will add all new data in the shop-dato to Firestore
+  //   addCollectionAndDocuments('categories', SHOP_DATA)
+  // }, [])
 
   const value = { products }
 
