@@ -18,6 +18,7 @@ import {
   writeBatch,
   query,
   getDocs,
+  docSnapshot,
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -71,7 +72,12 @@ export const getCategoriesAndDocuments = async () => {
   // querySnapshort.docs
   // -- will give us an array of all of the individual documents inside
   //-- to create the structure below
-  const categoryMap = querySnapshort.docs.reduce((acc, doc) => {}, {})
+  const categoryMap = querySnapshort.docs.reduce((acc, querySnapshort) => {
+    const { title, items } = docSnapshot.data()
+    return acc
+  }, {})
+
+  return categoryMap
 }
 
 /*
