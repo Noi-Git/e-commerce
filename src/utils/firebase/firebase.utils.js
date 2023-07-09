@@ -69,9 +69,7 @@ export const getCategoriesAndDocuments = async () => {
 
   //this is important for frontend in all framework to retrive data from database
   const querySnapshort = await getDocs(q)
-  // querySnapshort.docs
-  // -- will give us an array of all of the individual documents inside
-  //-- to create the structure below
+
   const categoryMap = querySnapshort.docs.reduce((acc, querySnapshort) => {
     const { title, items } = DocumentSnapshot.data()
     acc[title.toLowerCase()] = items
@@ -80,19 +78,6 @@ export const getCategoriesAndDocuments = async () => {
 
   return categoryMap
 }
-
-/*
-{
-  hats: {
-    title: 'Hats',
-    items: [ {}, {}]
-  },
-    sneakers: {
-    title: 'Hats',
-    items: [ {}, {}]
-  }
-}
-*/
 
 export const createUserDocumentFromAuth = async (
   userAuth,
