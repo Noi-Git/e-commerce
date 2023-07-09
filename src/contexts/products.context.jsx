@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
-import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils'
+import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils'
 
 export const ProductsContext = createContext({
   products: [],
@@ -7,6 +7,15 @@ export const ProductsContext = createContext({
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    const getCategoryMap = async () => {
+      //this is the correct way to use async inside useEffect
+      const categoryMap = await getCategoriesAndDocuments('categories')
+      console.log(categoryMap)
+    }
+    getCategoryMap()
+  }, [])
 
   const value = { products }
 

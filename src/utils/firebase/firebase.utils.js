@@ -13,12 +13,11 @@ import {
   getFirestore,
   doc,
   getDoc,
+  getDocs,
   setDoc,
   collection,
   writeBatch,
   query,
-  getDocs,
-  DocumentSnapshot,
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -70,8 +69,8 @@ export const getCategoriesAndDocuments = async () => {
   //this is important for frontend in all framework to retrive data from database
   const querySnapshort = await getDocs(q)
 
-  const categoryMap = querySnapshort.docs.reduce((acc, querySnapshort) => {
-    const { title, items } = DocumentSnapshot.data()
+  const categoryMap = querySnapshort.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
     acc[title.toLowerCase()] = items
     return acc
   }, {})
