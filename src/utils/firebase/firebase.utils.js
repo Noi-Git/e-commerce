@@ -16,6 +16,8 @@ import {
   setDoc,
   collection,
   writeBatch,
+  query,
+  getDocs,
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -62,7 +64,28 @@ export const addCollectionAndDocuments = async (
 //retrive data from the database in the Firestore
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
+
+  //this is important for frontend in all framework to retrive data from database
+  const querySnapshort = await getDocs(q)
+  // querySnapshort.docs
+  // -- will give us an array of all of the individual documents inside
+  //-- to create the structure below
+  const categoryMap = querySnapshort.docs.reduce((acc, doc) => {}, {})
 }
+
+/*
+{
+  hats: {
+    title: 'Hats',
+    items: [ {}, {}]
+  },
+    sneakers: {
+    title: 'Hats',
+    items: [ {}, {}]
+  }
+}
+*/
 
 export const createUserDocumentFromAuth = async (
   userAuth,
