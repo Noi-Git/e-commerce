@@ -9,7 +9,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBkUGEeMeAFSOqjh28KOSnCIJh1zoFd8rw',
@@ -34,6 +43,40 @@ export const singInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider)
 
 export const db = getFirestore()
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const batch = writeBatch(db)
+  const collectionRef = collection(db, collectionKey)
+
+  objectsToAdd.forEach((object) => {
+    //object comes from data in shop-data
+    const docRef = doc(collectionRef, object.title.toLowerCase())
+    batch.set(docRef, object) //set docRef data to the value in object
+  })
+
+  await batch.commit()
+  console.log('done')
+}
+
+//retrive data from the database in the Firestore
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
+
+  //this is important for frontend in all framework to retrive data from database
+  const querySnapshort = await getDocs(q)
+
+  const categoryMap = querySnapshort.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    acc[title.toLowerCase()] = items
+    return acc
+  }, {})
+
+  return categoryMap
+}
 
 export const createUserDocumentFromAuth = async (
   userAuth,
