@@ -1,9 +1,9 @@
-import { styled } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const SubColor = 'grey'
 const MainColor = 'black'
 
-export const ShrinkLabelStyles = styled.css`
+export const ShrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
   color: ${MainColor};
@@ -22,7 +22,7 @@ export const FormInputLabel = styled.label`
   ${({ shrink }) => shrink && ShrinkLabelStyles}
 `
 
-export const FormInput = styled.input`
+export const Input = styled.input`
   background: none;
   background-color: white;
   color: ${SubColor};

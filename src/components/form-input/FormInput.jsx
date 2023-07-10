@@ -1,20 +1,16 @@
-import {} from './form-input.styles.jsx'
+import { Group, Input, FormInputLabel } from './form-input.styles'
 
 const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className='group'>
-      <input className='form-input' {...otherProps} />
+    <Group>
+      <Input {...otherProps} />
       {label && (
-        <label
-          className={`${
-            otherProps.value.length ? 'shrink' : null
-          } form-input-label`}
-        >
+        <FormInputLabel shrink={otherProps.value.length}>
           {label}
-        </label>
+        </FormInputLabel>
       )}
       {/* name="displayName" -- has to be the same as we have in the -- defaultFormFields */}
-    </div>
+    </Group>
   )
 }
 
