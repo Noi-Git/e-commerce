@@ -1,4 +1,9 @@
 import { styled } from 'styled-components'
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+} from '../button/button.styles'
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
@@ -13,10 +18,14 @@ export const CartDropdownContainer = styled.div`
   right: 40px;
   z-index: 5;
 
-  button {
+  ${BaseButton},
+  ${GoogleSignInButton},
+  ${InvertedButton}, {
     margin-top: auto;
   }
 `
+// the ${BaseButton}...are use for nested style
+// meaning: if any of these are inside CartDropdownContainer -- apply those style
 
 export const EmptyMessage = styled.span`
   font-size: 18px;
