@@ -8,7 +8,12 @@ import { CartContext } from '../../contexts/cart.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 import CartDropdown from '../../components/cart-dropdown/CartDropdown'
 
-import { NavigationContainer } from './navigation.styles'
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinksContainer,
+  NavLink,
+} from './navigation.styles'
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext) // get the value of currentUser
@@ -17,25 +22,21 @@ const Navigation = () => {
   return (
     <Fragment>
       <NavigationContainer>
-        <Link className='logo-container' to='/'>
+        <LogoContainer to='/'>
           <CrwnLogo className='logo' />
-        </Link>
-        <div className='nav-links-container'>
-          <Link className='nav-link' to='/shop'>
-            SHOP
-          </Link>
+        </LogoContainer>
+        <NavLinksContainer>
+          <NavLink to='/shop'>SHOP</NavLink>
           {/* display sign out link after user has signed in */}
           {currentUser ? (
-            <span className='nav-link' onClick={signOutUser}>
+            <NavLink as='span' onClick={signOutUser}>
               SIGN OUT
-            </span>
+            </NavLink>
           ) : (
-            <Link className='nav-link' to='/auth'>
-              SIGN IN
-            </Link>
+            <NavLink to='/auth'>SIGN IN</NavLink>
           )}
           <CartIcon />
-        </div>
+        </NavLinksContainer>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
