@@ -9,7 +9,7 @@ const Category = () => {
   const { category } = useParams()
   const { categoriesMap } = useContext(CategoriesContext)
 
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(categoriesMap[category])
 
   useEffect(() => {
     setProducts(categoriesMap[category])
@@ -17,9 +17,10 @@ const Category = () => {
 
   return (
     <div className='category-container'>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {products &&
+        products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
     </div>
   )
 }
