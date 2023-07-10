@@ -1,3 +1,16 @@
+import { styled } from "styled-components"
+
+//Need to think of the order of the style that should come first
+export const BackgroundImage = styled.div`
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+`
+
+export const DirectoryItemContainer = styled.div`
+
+`
 .directory-item-container {
   min-width: 30%;
   height: 240px;
@@ -35,10 +48,7 @@
   }
 
   .background-image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+
   }
 
   .directory-item-body {
