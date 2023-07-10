@@ -1,5 +1,5 @@
 import ProductCard from '../product-card/ProductCard'
-import './categories-preview.styles.scss'
+import './category-preview.styles.scss'
 
 const CategoryPreview = ({ title, products }) => {
   return (
