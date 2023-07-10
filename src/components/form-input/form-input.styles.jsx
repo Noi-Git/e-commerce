@@ -6,11 +6,11 @@ const MainColor = 'black'
 export const ShrinkLabelStyles = styled.css`
 top: -14px;
 font-size: 12px;
-color: MainColor;
+color: ${MainColor};
 `
 
 export const FormInputLabel = styled.label`
-color: SubColor;
+color: ${SubColor};
 font-size: 16px;
 font-weight: normal;
 position: absolute;
@@ -22,33 +22,35 @@ transition: 300ms ease all;
 ${({shrink}) => shrink && ShrinkLabelStyles}
 
 `
-// modify&.shrink to use ${({shrink}) and use props instead of calssName
-// apply ShrinkLabelStyles if shrink is true
 
-.group {
-  position: relative;
-  margin: 45px 0;
-
-  .form-input {
-    background: none;
+export const FormInput = styled.input`
+background: none;
     background-color: white;
-    color: $sub-color;
+    color: ${SubColor};
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid $sub-color;
+    border-bottom: 1px solid ${SubColor};
     margin: 25px 0;
 
     &:focus {
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
-      @include shrinkLabel();
+    &:focus ~ ${FormInputLabel} {
+      ${ShrinkLabelStyles}
     }
+`
+
+.group {
+  position: relative;
+  margin: 45px 0;
+
+  .form-input {
+    
   }
 
   input[type='password'] {
