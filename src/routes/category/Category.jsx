@@ -1,7 +1,8 @@
+import { useParams } from 'react-router-dom'
 import './category.styles.scss'
 
 const Category = () => {
-  return <div>Category</div>
+  const { category } = useParams()
 }
 
 export default Category
