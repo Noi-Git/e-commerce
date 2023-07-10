@@ -12,7 +12,7 @@ export const CategoriesProvider = ({ children }) => {
     const getCategoryMap = async () => {
       //this is the correct way to use async inside useEffect
       const categoryMap = await getCategoriesAndDocuments('categories')
-      console.log(categoryMap)
+      // console.log(categoryMap)
 
       setCategoriesMap(categoryMap)
     }
