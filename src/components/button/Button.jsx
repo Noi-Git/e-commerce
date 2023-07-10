@@ -18,14 +18,9 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
   }[buttonType])
 
 const Button = ({ children, buttonType, ...otherProps }) => {
-  return (
-    <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
-      {...otherProps}
-    >
-      {children}
-    </button>
-  )
+  // the CustomButton is pointing to the relevant button in getButton
+  const CustomButton = getButton(buttonType)
+  return <CustomButton {...otherProps}>{children}</CustomButton>
 }
 
 export default Button
