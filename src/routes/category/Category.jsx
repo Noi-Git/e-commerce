@@ -10,7 +10,9 @@ const Category = () => {
 
   const [products, setProducts] = useState([])
 
-  useEffect(() => {}, [category, categoriesMap])
+  useEffect(() => {
+    setProducts(categoriesMap[category])
+  }, [category, categoriesMap])
 }
 
 export default Category
