@@ -3,17 +3,27 @@ import { styled } from "styled-components"
 const SubColor = 'grey'
 const MainColor = 'black'
 
-const ShrinkLabel = styled.css`
+export const ShrinkLabelStyles = styled.css`
 top: -14px;
 font-size: 12px;
 color: MainColor;
 `
 
-// @mixin shrinkLabel {
-//   top: -14px;
-//   font-size: 12px;
-//   color: $main-color;
-// }
+export const FormInputLabel = styled.label`
+color: SubColor;
+font-size: 16px;
+font-weight: normal;
+position: absolute;
+pointer-events: none;
+left: 5px;
+top: 10px;
+transition: 300ms ease all;
+
+${({shrink}) => shrink && ShrinkLabelStyles}
+
+`
+// modify&.shrink to use ${({shrink}) and use props instead of calssName
+// apply ShrinkLabelStyles if shrink is true
 
 .group {
   position: relative;
