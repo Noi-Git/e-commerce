@@ -3,15 +3,15 @@ import {
   BackgroundImage,
   DirectoryItemBody,
   DirectoryItemContainer,
-} from './directory-item.styles.jsx'
+} from './directory-item.styles'
 
 const DirectoryItem = ({ category }) => {
-  const { imageUrl, title } = category
+  const { imageUrl, title, route } = category
   return (
     <DirectoryItemContainer>
-      <BackgroundImage imageUrl={imageUrl}></BackgroundImage>
+      <BackgroundImage imageUrl={imageUrl} />
       <DirectoryItemBody>
-        <Link to='/shop'>
+        <Link to={route}>
           <h2>{title}</h2>
           <p>SHOP NOW</p>
         </Link>
