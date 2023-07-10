@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import { UserProvider } from './contexts/UserContext'
-import { CategoriesProvider } from './contexts/caterories.context'
+import { CategoriesProvider } from './contexts/categories.context'
 
 import 'normalize.css'
 import './index.scss'
