@@ -3,14 +3,17 @@ import { styled } from "styled-components"
 const SubColor = 'grey'
 const MainColor = 'black'
 
-// $sub-color: grey;
-// $main-color: black;
+const ShrinkLabel = styled.css`
+top: -14px;
+font-size: 12px;
+color: MainColor;
+`
 
-@mixin shrinkLabel {
-  top: -14px;
-  font-size: 12px;
-  color: $main-color;
-}
+// @mixin shrinkLabel {
+//   top: -14px;
+//   font-size: 12px;
+//   color: $main-color;
+// }
 
 .group {
   position: relative;
