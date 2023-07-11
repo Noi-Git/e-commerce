@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { CartContext } from '../../contexts/cart.context'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/Button'
 import {
-  ProductCardContainer,
+  ProductCartContainer,
   Footer,
   Name,
   Price,
@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
   const addProductToCart = () => addItemToCart(product)
 
   return (
-    <ProductCardContainer>
+    <ProductCartContainer>
       <img src={imageUrl} alt={`${name}`} />
       <Footer>
         <Name>{name}</Name>
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
       >
         Add to Card
       </Button>
-    </ProductCardContainer>
+    </ProductCartContainer>
   )
 }
 
