@@ -40,9 +40,12 @@ const INITIAL_STATE = {
 export const UserProvider = ({ children }) => {
   // const [currentUser, setCurrentUser] = useState(null)
 
-  const [state, dispatch] = useReducer(userReducer, INITIAL_STATE) //always receive state and dispatch
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE) //always receive state and dispatch
+  //destructured 'currentUser' directly
 
-  const { currentUser } = state //destructured currentUser out of state
+  const setCurrentUser = (user) => {
+    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user })
+  }
 
   const value = { currentUser, setCurrentUser }
 
