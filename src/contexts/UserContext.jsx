@@ -10,13 +10,24 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 })
 
+{
+  currentUser: null || googleAuthObj,
+  firstName: '',
+  lastName: ''
+}
+
 const userReducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
     case 'SET_CURRENT_USER': //type
       return {
-        currentUser: payload,
+        ...state, //ex of pass the existing data without modify them -don't modify firstname and lastname
+        currentUser: payload, //only modify currentUser data
+      }
+    case 'increment':
+      return {
+        value: state.value + 1 //ex of using state to increase value
       }
     default:
       throw new Error(`Unhandled type ${type} in userReducer`)
