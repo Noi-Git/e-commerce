@@ -40,7 +40,9 @@ const INITIAL_STATE = {
 export const UserProvider = ({ children }) => {
   // const [currentUser, setCurrentUser] = useState(null)
 
-  const [] = useReducer(userReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(userReducer, INITIAL_STATE) //always receive state and dispatch
+
+  const { currentUser } = state //destructured currentUser out of state
 
   const value = { currentUser, setCurrentUser }
 
