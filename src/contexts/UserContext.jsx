@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useReducer } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
@@ -24,10 +24,6 @@ const userReducer = (state, action) => {
         ...state, //ex of pass the existing data without modify them -don't modify firstname and lastname
         currentUser: payload, //only modify currentUser data
       }
-    case 'increment':
-      return {
-        value: state.value + 1, //ex of using state to increase value
-      }
     default:
       throw new Error(`Unhandled type ${type} in userReducer`)
   }
@@ -38,8 +34,6 @@ const INITIAL_STATE = {
 }
 
 export const UserProvider = ({ children }) => {
-  // const [currentUser, setCurrentUser] = useState(null)
-
   const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE) //always receive state and dispatch
   //destructured 'currentUser' directly
 
