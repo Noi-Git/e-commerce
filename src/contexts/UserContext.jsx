@@ -1,12 +1,8 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
 } from '../utils/firebase/firebase.utils'
-
-/* === context ===
-  - context is a kind of storage place
-*/
 
 // this is the actual value you want to access
 export const UserContext = createContext({
@@ -14,9 +10,37 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 })
 
+export const USER_ACTION_TYPES = {
+  //create constant variable to prevent typo
+  SET_CURRENT_USER: 'SET_CURRENT_USER',
+}
+
+const userReducer = (state, action) => {
+  const { type, payload } = action
+
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CURRENT_USER: //type
+      return {
+        ...state, //ex of pass the existing data without modify them -don't modify firstname and lastname
+        currentUser: payload, //only modify currentUser data
+      }
+    default:
+      throw new Error(`Unhandled type ${type} in userReducer`)
+  }
+}
+
+const INITIAL_STATE = {
+  currentUser: null,
+}
+
 export const UserProvider = ({ children }) => {
-  //we want to store currentUser and setCurrentUser
-  const [currentUser, setCurrentUser] = useState(null)
+  const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE) //always receive state and dispatch
+  //destructured 'currentUser' directly
+
+  const setCurrentUser = (user) => {
+    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user })
+  }
+
   const value = { currentUser, setCurrentUser }
 
   useEffect(() => {
@@ -33,3 +57,16 @@ export const UserProvider = ({ children }) => {
   }, [])
   return <UserContext.Provider value={value}> {children} </UserContext.Provider>
 }
+
+/* === Reducer is pretty much like function ===
+         -- return back an object
+
+const userReducer = () => {
+  return { 
+    -- object that have shape of the data we want to store
+    -- ex. store anything related to user
+    -- always return a new object
+    currentUser: -- change base on action
+  }
+}
+*/
