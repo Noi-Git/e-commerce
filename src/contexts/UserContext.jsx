@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useReducer } from 'react'
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
@@ -33,9 +33,15 @@ const userReducer = (state, action) => {
   }
 }
 
+const INITIAL_STATE = {
+  currentUser: null,
+}
+
 export const UserProvider = ({ children }) => {
-  //we want to store currentUser and setCurrentUser
   // const [currentUser, setCurrentUser] = useState(null)
+
+  const [] = useReducer(userReducer, INITIAL_STATE)
+
   const value = { currentUser, setCurrentUser }
 
   useEffect(() => {
