@@ -34,7 +34,7 @@ const SignInForm = () => {
 
     try {
       // when user sign in - we get the user - then store it inside of context
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      await signInAuthUserWithEmailAndPassword(email, password)
       resetFormFields()
     } catch (error) {
       switch (error.code) {
